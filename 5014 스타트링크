@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <queue>
+using namespace std;
+typedef struct node
+{
+	int x;
+	int y;
+}val;
+int main(void)
+{
+	queue<val> Q;
+	bool visit[1000001] = { false, };
+	int F, S, G, U, D;
+	scanf("%d %d %d %d %d", &F, &S, &G, &U, &D);
+	val s;
+	s.x = S;
+	s.y = 0;
+	Q.push(s);
+	visit[S] = true;
+	int result = 0;
+	while (!Q.empty())
+	{
+		int kiki = Q.front().x;
+		int kiki2 = Q.front().y;
+		Q.pop();
+		if (kiki == G)
+		{
+			printf("%d\n", kiki2);
+			return 0;
+		}
+		if (!visit[kiki +U] && ((kiki + U) <= F))
+		{
+			val new_val = { kiki + U, kiki2 + 1 };
+			Q.push(new_val);
+			visit[kiki + U] = true;
+		}
+		if (!visit[kiki - D] && ((kiki - D) > 0))
+		{
+			val new_val = { kiki - D, kiki2 + 1 };
+			Q.push(new_val);
+			visit[kiki - D] = true;
+		}
+	}
+	printf("use the stairs\n");
+	return 0;
+}
