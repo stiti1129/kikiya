@@ -1,0 +1,42 @@
+#include <stdio.h>
+int findMax(int a, int b, int c);
+int main(void)
+{
+	int arr[10001];
+	int dp[10001];
+	int n;
+	int temp1, temp2, temp3;
+	scanf("%d", &n);
+	for (int i = 1; i <= n; i++)
+		scanf("%d", &arr[i]);
+	dp[1] = arr[1];
+	dp[2] = dp[1] + arr[2];
+	dp[3] = findMax(dp[2], dp[1] + arr[3], arr[2] + arr[3]);
+	for (int i = 4; i <= n; i++)
+	{
+		temp1 = dp[i - 3] + arr[i - 1] + arr[i];
+		temp2 = dp[i - 2] + arr[i];
+		temp3 = dp[i - 1];
+		dp[i] = findMax(temp1, temp2, temp3);
+	}
+	printf("%d\n", dp[n]);
+	return 0;
+}
+
+int findMax(int a, int b, int c)
+{
+	if (a > b)
+	{
+		if (a > c)
+			return a;
+		else
+			return c;
+	}
+	else
+	{
+		if (b > c)
+			return b;
+		else
+			return c;
+	}
+}
