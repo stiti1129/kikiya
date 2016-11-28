@@ -1,0 +1,52 @@
+#include <stdio.h>
+int getMax(int a, int b, int c);
+int main(void)
+{
+	int n, m;
+	int arr[1001][1001];
+	int dp[1001][1001];
+	scanf("%d %d", &n, &m);
+	int temp1, temp2, temp3;
+	for (int i = 0; i <= n; i++)
+	{
+		for (int j = 0; j <= m; j++)
+		{
+			dp[i][j] = 0;
+			arr[i][j] = 0;
+		}
+	}
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 1; j <= m; j++)
+		{
+			scanf("%d", &arr[i][j]);
+		}
+	}
+	for (int i = 1; i <= n; i++)
+	{
+		for (int j = 1; j <= m; j++)
+		{
+			dp[i][j] = getMax(dp[i-1][j-1], dp[i][j-1], dp[i-1][j]) + arr[i][j];
+		}
+	}
+	printf("%d\n", dp[n][m]);
+	return 0;
+}
+
+int getMax(int a, int b, int c)
+{
+	if (a > b)
+	{
+		if (a > c)
+			return a;
+		else
+			return c;
+	}
+	else
+	{
+		if (b > c)
+			return b;
+		else
+			return c;
+	}
+}
