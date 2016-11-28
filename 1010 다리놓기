@@ -1,0 +1,34 @@
+#include <stdio.h>
+long long comBination(int a, int b);
+int main(void)
+{
+	int testCase;
+	int n, m;
+	long long result, a, b;
+	int haha;
+	scanf("%d", &testCase);
+	while (testCase > 0)
+	{
+		scanf("%d %d", &n, &m);
+		haha = m - n;
+		if (haha < n)
+			n = haha;
+		a = comBination(m, n);
+		b = comBination(n, n);
+		printf("%lld\n", (long long)a / b);
+		testCase--;
+	}
+	return 0;
+}
+
+long long comBination(int a, int b)
+{
+	long long kiki=1;
+	long long temp;
+	temp = a;
+	for (int i = 0; i <b; i++)
+	{
+		kiki *= (long long)(temp - i);
+	}
+	return kiki;
+}
