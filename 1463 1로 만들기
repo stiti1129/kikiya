@@ -1,0 +1,45 @@
+#include <stdio.h>
+int getMin(int a, int b, int c);
+int main(void)
+{
+	int* dp = (int *)malloc(sizeof(int) *1000001);
+	int num;
+	int temp1, temp2;
+	dp[1] = 0;
+	dp[2] = 1;
+	dp[3] = 1;
+	scanf("%d", &num);
+	for (int i = 4; i <= num; i++)
+	{
+		if (i % 2 == 0)
+			temp1 = i / 2;
+		else
+			temp1 = i-1;
+		if (i % 3 == 0)
+			temp2 = i / 3;
+		else
+			temp2 = i-1;
+		dp[i] = getMin(dp[i - 1], dp[temp1], dp[temp2]) + 1;
+	}
+
+	printf("%d\n", dp[num]);
+	return 0;
+}
+
+int getMin(int a, int b, int c)
+{
+	if (a - b >= 0)
+	{
+		if (b - c >= 0)
+			return c;
+		else
+			return b;
+	}
+	else if (a - b <= 0)
+	{
+		if (a - c >= 0)
+			return c;
+		else
+			return a;
+	}
+}
