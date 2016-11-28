@@ -1,0 +1,21 @@
+#include <stdio.h>
+
+int main(void)
+{
+	int n;
+	scanf("%d", &n);
+	long long result=1;
+	for (int i = 1; i < n; i++)
+	{
+		if (((i + 1) % 2) == 0)
+		{
+			result = ((long long)2 * result + 1)%10007;
+		}
+		else
+		{
+			result = ((long long)2 * result - 1) % 10007;
+		}
+	}
+	printf("%d", result );
+	return 0;
+}
