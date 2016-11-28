@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main(void)
+{
+	int testCase;
+	int n;
+	long long arr[100];
+	scanf("%d", &testCase);
+	arr[0] = 1;
+	arr[1] = 1;
+	arr[2] = 1;
+	arr[3] = 2;
+	arr[4] = 2;
+	for (int i = 5; i < 100; i++)
+	{
+		arr[i] = arr[i - 1] + arr[i - 5];
+	}
+	for (int i = 0; i < testCase; i++) 
+	{
+		scanf("%d", &n);
+		printf("%lld\n", arr[n - 1]);
+	}
+	return 0;
+}
