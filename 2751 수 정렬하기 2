@@ -1,0 +1,45 @@
+#include <stdio.h>
+void quickSort(int* a, int left, int right);
+int main(void)
+{
+	int hmn;
+	scanf("%d", &hmn);
+	int* arr = (int*)malloc(sizeof(int)*1000000);
+	for (int i = 0; i < hmn; i++)
+	{
+		scanf("%d", &arr[i]);
+	}
+	quickSort(arr, 0, hmn-1);
+	for (int j = 0; j < hmn; j++)
+	{
+		printf("%d\n", arr[j]);
+	}
+
+}
+
+void quickSort(int*a, int left, int right)
+{
+	int pivot = a[(right + left) / 2];
+	int i = left;
+	int j = right;
+	int temp = 0;
+	while (i <= j)
+	{
+		while (a[i] < pivot)
+			i++;
+		while(a[j] > pivot)
+			j--;
+		if (i <= j)
+		{
+			temp = a[i];
+			a[i] = a[j];
+			a[j] = temp;
+			i++;
+			j--;
+		}
+	}
+	if (left < j)
+		quickSort(a, left, j);
+	if (right > i)
+		quickSort(a, i, right);
+}
