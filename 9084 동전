@@ -1,0 +1,35 @@
+#include <stdio.h>
+
+int main(void)
+{
+	int testCase;
+	int coinCase;
+	int value;
+	scanf("%d", &testCase);
+
+	for (int i = 0; i < testCase; i++)
+	{
+		int dp[10001] = { 0 };
+		int coin[21];
+		scanf("%d", &coinCase);
+		for (int j = 0; j < coinCase; j++)
+		{
+			scanf("%d", &coin[j]);
+		}
+
+		dp[0] = 1;
+		scanf("%d", &value);
+		for (int p = 0; p < coinCase; p++)
+		{
+			for (int q = coin[p]; q <= value; q++)
+			{
+				{
+					dp[q] += dp[q - coin[p]];
+				}
+			}
+		}
+		
+		printf("%d\n", dp[value]);
+	}
+	return 0;
+}
